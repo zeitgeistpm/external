@@ -1,0 +1,12 @@
+[workspace]
+
+members = [
+    "vrf",
+    "session-keys",
+    "pallets/author-inherent",
+    "pallets/author-mapping",
+    "pallets/author-slot-filter",
+    "pallets/parachain-staking",
+    "nimbus-consensus",
+    "nimbus-primitives",
+]
