@@ -44,95 +44,95 @@
 #![allow(unused_imports)]
 
 use frame_support::{
-	traits::Get,
-	weights::{constants::RocksDbWeight, Weight},
+    traits::Get,
+    weights::{constants::RocksDbWeight, Weight},
 };
 use sp_std::marker::PhantomData;
 
 /// Weight functions needed for pallet_randomness.
 pub trait WeightInfo {
-	#[rustfmt::skip]
+    #[rustfmt::skip]
 	fn set_babe_randomness_results() -> Weight;
-	#[rustfmt::skip]
+    #[rustfmt::skip]
 	fn on_initialize() -> Weight;
-	#[rustfmt::skip]
+    #[rustfmt::skip]
 	fn request_randomness() -> Weight;
-	#[rustfmt::skip]
+    #[rustfmt::skip]
 	fn prepare_fulfillment(x: u32, ) -> Weight;
-	#[rustfmt::skip]
+    #[rustfmt::skip]
 	fn finish_fulfillment() -> Weight;
-	#[rustfmt::skip]
+    #[rustfmt::skip]
 	fn increase_fee() -> Weight;
-	#[rustfmt::skip]
+    #[rustfmt::skip]
 	fn execute_request_expiration() -> Weight;
 }
 
 /// Weights for pallet_randomness using the Substrate node and recommended hardware.
 pub struct SubstrateWeight<T>(PhantomData<T>);
 impl<T: frame_system::Config> WeightInfo for SubstrateWeight<T> {
-	// Storage: Randomness RelayEpoch (r:1 w:1)
-	// Storage: ParachainSystem ValidationData (r:1 w:0)
-	// Storage: ParachainSystem RelayStateProof (r:1 w:0)
-	// Storage: Randomness RandomnessResults (r:1 w:1)
-	// Storage: Randomness InherentIncluded (r:0 w:1)
+    // Storage: Randomness RelayEpoch (r:1 w:1)
+    // Storage: ParachainSystem ValidationData (r:1 w:0)
+    // Storage: ParachainSystem RelayStateProof (r:1 w:0)
+    // Storage: Randomness RandomnessResults (r:1 w:1)
+    // Storage: Randomness InherentIncluded (r:0 w:1)
 	#[rustfmt::skip]
-	fn set_babe_randomness_results() -> Weight {
+    fn set_babe_randomness_results() -> Weight {
 		Weight::from_ref_time(27_615_000 as u64)
 			.saturating_add(T::DbWeight::get().reads(4 as u64))
 			.saturating_add(T::DbWeight::get().writes(3 as u64))
 	}
-	// Storage: Randomness NotFirstBlock (r:1 w:0)
-	// Storage: System Digest (r:1 w:0)
-	// Storage: AuthorMapping MappingWithDeposit (r:1 w:0)
-	// Storage: Randomness LocalVrfOutput (r:1 w:1)
-	// Storage: Randomness RandomnessResults (r:1 w:1)
+    // Storage: Randomness NotFirstBlock (r:1 w:0)
+    // Storage: System Digest (r:1 w:0)
+    // Storage: AuthorMapping MappingWithDeposit (r:1 w:0)
+    // Storage: Randomness LocalVrfOutput (r:1 w:1)
+    // Storage: Randomness RandomnessResults (r:1 w:1)
 	#[rustfmt::skip]
-	fn on_initialize() -> Weight {
+    fn on_initialize() -> Weight {
 		Weight::from_ref_time(1_257_767_000 as u64)
 			.saturating_add(T::DbWeight::get().reads(5 as u64))
 			.saturating_add(T::DbWeight::get().writes(2 as u64))
 	}
-	// Storage: Randomness RequestCount (r:1 w:1)
-	// Storage: System Account (r:2 w:2)
-	// Storage: Randomness RandomnessResults (r:1 w:1)
-	// Storage: Randomness Requests (r:0 w:1)
+    // Storage: Randomness RequestCount (r:1 w:1)
+    // Storage: System Account (r:2 w:2)
+    // Storage: Randomness RandomnessResults (r:1 w:1)
+    // Storage: Randomness Requests (r:0 w:1)
 	#[rustfmt::skip]
-	fn request_randomness() -> Weight {
+    fn request_randomness() -> Weight {
 		Weight::from_ref_time(61_851_000 as u64)
 			.saturating_add(T::DbWeight::get().reads(4 as u64))
 			.saturating_add(T::DbWeight::get().writes(5 as u64))
 	}
-	// Storage: Randomness Requests (r:1 w:0)
-	// Storage: Randomness RandomnessResults (r:1 w:0)
+    // Storage: Randomness Requests (r:1 w:0)
+    // Storage: Randomness RandomnessResults (r:1 w:0)
 	#[rustfmt::skip]
-	fn prepare_fulfillment(x: u32, ) -> Weight {
+    fn prepare_fulfillment(x: u32, ) -> Weight {
 		Weight::from_ref_time(22_202_000 as u64)
 			// Standard Error: 0
 			.saturating_add(Weight::from_ref_time(296_000 as u64).saturating_mul(x as u64))
 			.saturating_add(T::DbWeight::get().reads(2 as u64))
 	}
-	// Storage: System Account (r:2 w:2)
-	// Storage: Randomness RandomnessResults (r:1 w:1)
-	// Storage: Randomness Requests (r:0 w:1)
+    // Storage: System Account (r:2 w:2)
+    // Storage: Randomness RandomnessResults (r:1 w:1)
+    // Storage: Randomness Requests (r:0 w:1)
 	#[rustfmt::skip]
-	fn finish_fulfillment() -> Weight {
+    fn finish_fulfillment() -> Weight {
 		Weight::from_ref_time(50_445_000 as u64)
 			.saturating_add(T::DbWeight::get().reads(3 as u64))
 			.saturating_add(T::DbWeight::get().writes(4 as u64))
 	}
-	// Storage: Randomness Requests (r:1 w:1)
-	// Storage: System Account (r:2 w:2)
+    // Storage: Randomness Requests (r:1 w:1)
+    // Storage: System Account (r:2 w:2)
 	#[rustfmt::skip]
-	fn increase_fee() -> Weight {
+    fn increase_fee() -> Weight {
 		Weight::from_ref_time(49_880_000 as u64)
 			.saturating_add(T::DbWeight::get().reads(3 as u64))
 			.saturating_add(T::DbWeight::get().writes(3 as u64))
 	}
-	// Storage: Randomness Requests (r:1 w:1)
-	// Storage: System Account (r:2 w:2)
-	// Storage: Randomness RandomnessResults (r:1 w:1)
+    // Storage: Randomness Requests (r:1 w:1)
+    // Storage: System Account (r:2 w:2)
+    // Storage: Randomness RandomnessResults (r:1 w:1)
 	#[rustfmt::skip]
-	fn execute_request_expiration() -> Weight {
+    fn execute_request_expiration() -> Weight {
 		Weight::from_ref_time(55_026_000 as u64)
 			.saturating_add(T::DbWeight::get().reads(4 as u64))
 			.saturating_add(T::DbWeight::get().writes(4 as u64))
@@ -141,69 +141,69 @@ impl<T: frame_system::Config> WeightInfo for SubstrateWeight<T> {
 
 // For backwards compatibility and tests
 impl WeightInfo for () {
-	// Storage: Randomness RelayEpoch (r:1 w:1)
-	// Storage: ParachainSystem ValidationData (r:1 w:0)
-	// Storage: ParachainSystem RelayStateProof (r:1 w:0)
-	// Storage: Randomness RandomnessResults (r:1 w:1)
-	// Storage: Randomness InherentIncluded (r:0 w:1)
+    // Storage: Randomness RelayEpoch (r:1 w:1)
+    // Storage: ParachainSystem ValidationData (r:1 w:0)
+    // Storage: ParachainSystem RelayStateProof (r:1 w:0)
+    // Storage: Randomness RandomnessResults (r:1 w:1)
+    // Storage: Randomness InherentIncluded (r:0 w:1)
 	#[rustfmt::skip]
-	fn set_babe_randomness_results() -> Weight {
+    fn set_babe_randomness_results() -> Weight {
 		Weight::from_ref_time(27_615_000 as u64)
 			.saturating_add(RocksDbWeight::get().reads(4 as u64))
 			.saturating_add(RocksDbWeight::get().writes(3 as u64))
 	}
-	// Storage: Randomness NotFirstBlock (r:1 w:0)
-	// Storage: System Digest (r:1 w:0)
-	// Storage: AuthorMapping MappingWithDeposit (r:1 w:0)
-	// Storage: Randomness LocalVrfOutput (r:1 w:1)
-	// Storage: Randomness RandomnessResults (r:1 w:1)
+    // Storage: Randomness NotFirstBlock (r:1 w:0)
+    // Storage: System Digest (r:1 w:0)
+    // Storage: AuthorMapping MappingWithDeposit (r:1 w:0)
+    // Storage: Randomness LocalVrfOutput (r:1 w:1)
+    // Storage: Randomness RandomnessResults (r:1 w:1)
 	#[rustfmt::skip]
-	fn on_initialize() -> Weight {
+    fn on_initialize() -> Weight {
 		Weight::from_ref_time(1_257_767_000 as u64)
 			.saturating_add(RocksDbWeight::get().reads(5 as u64))
 			.saturating_add(RocksDbWeight::get().writes(2 as u64))
 	}
-	// Storage: Randomness RequestCount (r:1 w:1)
-	// Storage: System Account (r:2 w:2)
-	// Storage: Randomness RandomnessResults (r:1 w:1)
-	// Storage: Randomness Requests (r:0 w:1)
+    // Storage: Randomness RequestCount (r:1 w:1)
+    // Storage: System Account (r:2 w:2)
+    // Storage: Randomness RandomnessResults (r:1 w:1)
+    // Storage: Randomness Requests (r:0 w:1)
 	#[rustfmt::skip]
-	fn request_randomness() -> Weight {
+    fn request_randomness() -> Weight {
 		Weight::from_ref_time(61_851_000 as u64)
 			.saturating_add(RocksDbWeight::get().reads(4 as u64))
 			.saturating_add(RocksDbWeight::get().writes(5 as u64))
 	}
-	// Storage: Randomness Requests (r:1 w:0)
-	// Storage: Randomness RandomnessResults (r:1 w:0)
+    // Storage: Randomness Requests (r:1 w:0)
+    // Storage: Randomness RandomnessResults (r:1 w:0)
 	#[rustfmt::skip]
-	fn prepare_fulfillment(x: u32, ) -> Weight {
+    fn prepare_fulfillment(x: u32, ) -> Weight {
 		Weight::from_ref_time(22_202_000 as u64)
 			// Standard Error: 0
 			.saturating_add(Weight::from_ref_time(296_000 as u64).saturating_mul(x as u64))
 			.saturating_add(RocksDbWeight::get().reads(2 as u64))
 	}
-	// Storage: System Account (r:2 w:2)
-	// Storage: Randomness RandomnessResults (r:1 w:1)
-	// Storage: Randomness Requests (r:0 w:1)
+    // Storage: System Account (r:2 w:2)
+    // Storage: Randomness RandomnessResults (r:1 w:1)
+    // Storage: Randomness Requests (r:0 w:1)
 	#[rustfmt::skip]
-	fn finish_fulfillment() -> Weight {
+    fn finish_fulfillment() -> Weight {
 		Weight::from_ref_time(50_445_000 as u64)
 			.saturating_add(RocksDbWeight::get().reads(3 as u64))
 			.saturating_add(RocksDbWeight::get().writes(4 as u64))
 	}
-	// Storage: Randomness Requests (r:1 w:1)
-	// Storage: System Account (r:2 w:2)
+    // Storage: Randomness Requests (r:1 w:1)
+    // Storage: System Account (r:2 w:2)
 	#[rustfmt::skip]
-	fn increase_fee() -> Weight {
+    fn increase_fee() -> Weight {
 		Weight::from_ref_time(49_880_000 as u64)
 			.saturating_add(RocksDbWeight::get().reads(3 as u64))
 			.saturating_add(RocksDbWeight::get().writes(3 as u64))
 	}
-	// Storage: Randomness Requests (r:1 w:1)
-	// Storage: System Account (r:2 w:2)
-	// Storage: Randomness RandomnessResults (r:1 w:1)
+    // Storage: Randomness Requests (r:1 w:1)
+    // Storage: System Account (r:2 w:2)
+    // Storage: Randomness RandomnessResults (r:1 w:1)
 	#[rustfmt::skip]
-	fn execute_request_expiration() -> Weight {
+    fn execute_request_expiration() -> Weight {
 		Weight::from_ref_time(55_026_000 as u64)
 			.saturating_add(RocksDbWeight::get().reads(4 as u64))
 			.saturating_add(RocksDbWeight::get().writes(4 as u64))
