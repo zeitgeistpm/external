@@ -29,6 +29,7 @@ use frame_support::{
     traits::{Currency, Get, OnInitialize},
 };
 use frame_system::RawOrigin;
+use hex::decode as hex_decode;
 use nimbus_primitives::{digests::CompatibleDigestItem as NimbusDigest, NimbusId};
 use parity_scale_codec::alloc::string::ToString;
 use parity_scale_codec::Decode;
@@ -84,7 +85,7 @@ benchmarks! {
     // Benchmark for VRF verification and everything else in `set_output`, in `on_initialize`
     on_initialize {
         fn decode_32_bytes(input: String) -> [u8; 32] {
-            let output = hex::decode(input).expect("expect to decode input");
+            let output = hex_decode(input).expect("expect to decode input");
             let mut ret: [u8; 32] = Default::default();
             ret.copy_from_slice(&output[0..32]);
             ret
@@ -93,7 +94,7 @@ benchmarks! {
             sr25519::Public::unchecked_from(decode_32_bytes(input))
         }
         fn decode_pre_digest(input: String) -> PreDigest {
-            let output = hex::decode(input).expect("expect to decode input");
+            let output = hex_decode(input).expect("expect to decode input");
             const PRE_DIGEST_BYTE_LEN: usize = size_of::<PreDigest>() as usize;
             let mut ret: [u8; PRE_DIGEST_BYTE_LEN] = [0u8; PRE_DIGEST_BYTE_LEN];
             ret.copy_from_slice(&output[0..PRE_DIGEST_BYTE_LEN]);
